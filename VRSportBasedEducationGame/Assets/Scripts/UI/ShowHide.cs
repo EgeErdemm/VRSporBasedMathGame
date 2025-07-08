@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEditor.PackageManager.Requests;
+
 
 public class ShowHide : MonoBehaviour
 {
