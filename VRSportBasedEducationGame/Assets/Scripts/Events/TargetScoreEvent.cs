@@ -1,4 +1,4 @@
-public struct TargetScoreEvent 
+public class TargetScoreEvent 
 {
     public int targetScore;
     public TargetScoreEvent(int targetScore)

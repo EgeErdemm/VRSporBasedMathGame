@@ -11,13 +11,11 @@ public class SpineCheck : MonoBehaviour
         if(spine.rotation.eulerAngles.x > 50f && spine.rotation.eulerAngles.x < 180f)
         {
             spineUI.SetActive(true);
-            Debug.Log(spine.rotation.eulerAngles.x);
-
+            SquatTutorial.squatCount = 0;
         }
         else
         {
             spineUI.SetActive(false);
-            Debug.Log(spine.rotation.eulerAngles.x);
         }
     }
 }

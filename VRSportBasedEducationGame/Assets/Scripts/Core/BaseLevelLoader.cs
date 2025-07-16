@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public abstract class BaseLevelLoader : MonoBehaviour, ILevelDataProvider , ITileGameObjectProvider
 {
@@ -27,7 +28,7 @@ public abstract class BaseLevelLoader : MonoBehaviour, ILevelDataProvider , ITil
 
     protected IEventBus _eventbus;
     private TileEater _tileEater;
-
+    public int min =1, max=15;
 
     protected abstract void SetTilePosition(GameObject tile, int x, int y);
 
@@ -40,8 +41,12 @@ public abstract class BaseLevelLoader : MonoBehaviour, ILevelDataProvider , ITil
     {
         _eventbus = EventBus.Instance;
         _tileEater = new TileEater(this,this); // tile and leveldata provider send
+        _eventbus.Subscribe<NumberRangeEvent>(UpdateRandomNumberSize);
     }
-
+    private void OnDisable()
+    {
+        _eventbus.UnSubscribe<NumberRangeEvent>(UpdateRandomNumberSize);
+    }
 
     protected virtual void LoadLevel()
     {
@@ -102,7 +107,7 @@ public abstract class BaseLevelLoader : MonoBehaviour, ILevelDataProvider , ITil
     protected virtual void MakeLevelData()
     {
         levelData = new LevelData();
-        levelData.targetScore = Random.Range(45, 100);
+        levelData.targetScore = Random.Range(45* max/15, 100 * max/15);
         levelData.gridWidth = 6;//Random.Range(4, 10);
         levelData.gridHeight = 6;//Random.Range(4, 10);
         levelData.startX = -1;
@@ -112,10 +117,20 @@ public abstract class BaseLevelLoader : MonoBehaviour, ILevelDataProvider , ITil
         levelData.grid = new int[tileCount];
         for (int i = 0; i < tileCount; i++)
         {
-            levelData.grid[i] = Random.Range(1, 15);
+            levelData.grid[i] = RandomNumberRangeAssignor(min, max);//Random.Range(1, 15);
         }
 
     }
 
+    protected virtual int RandomNumberRangeAssignor(int min, int max)
+    {
+        int number = Random.Range(min, max);
+        return number;
+    }
+    private void UpdateRandomNumberSize(NumberRangeEvent @event)
+    {
+        max = @event.max;
+        min = @event.min;
+    }
 
 }

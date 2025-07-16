@@ -1,5 +1,5 @@
 
-public struct MyScoreEvent
+public class MyScoreEvent
 {
 
 

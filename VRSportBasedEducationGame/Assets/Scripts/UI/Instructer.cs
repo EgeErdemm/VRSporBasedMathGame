@@ -22,12 +22,14 @@ public class Instructer : MonoBehaviour
     {
         if(buttonReader.holdingButton)
         {
-            InstructerText.text = "Drop the box here";
+            if (PlayerPrefs.GetInt("language") == 0) { InstructerText.text = "Drop the box here"; }
+            else if (PlayerPrefs.GetInt("language") == 1) { InstructerText.text = "Kutuyu buraya býrak"; }
             arrow.SetActive(true);
         }
         else if(!buttonReader.holdingButton)
         {
-            InstructerText.text = "Hold the box with your finger";
+            if (PlayerPrefs.GetInt("language") == 0) { InstructerText.text = "Hold the box with your thumb"; }
+            else if (PlayerPrefs.GetInt("language") == 1) { InstructerText.text = "Kutuyu baþ parmaðýnla tut"; }
             arrow.SetActive(false);
         }
     }
