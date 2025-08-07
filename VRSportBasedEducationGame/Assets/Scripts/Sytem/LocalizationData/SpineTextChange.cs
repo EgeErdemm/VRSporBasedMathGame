@@ -17,10 +17,10 @@ public class SpineTextChange : MonoBehaviour
     {
         if(@event.language == 0)
         {
-            spineText.text = "Try to bend as the girl shows, remember to keep your back straight";
+            spineText.text = "Don't forget to keep your back straight and break at the knees.";
         }else if(@event.language == 1)
         {
-            spineText.text = "Kýzýn gösterdiði þekilde eðilmeye çalýþ, sýrtýný düz tutmayý unutma";
+            spineText.text = "Sýrtýný düz tutmayý unutma ve dýz kapaklarýný kýr";
         }
     }
 }
