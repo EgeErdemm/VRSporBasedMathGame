@@ -9,6 +9,7 @@ public class RandomNumberSizeChanger : MonoBehaviour
     private void OnEnable()
     {
         _eventBus = EventBus.Instance;
+        _eventBus.Publish(new NumberRangeEvent(1, 31));
     }
     public void RandomNumberSizeSmall()
     {
